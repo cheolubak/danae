@@ -20,6 +20,9 @@ export class User {
   @Column('varchar', { length: 20, name: 'nickname' })
   nickname: string;
 
+  @Column('varchar', { length: 30, name: 'profile' })
+  profile: string;
+
   @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt: Date;
 
