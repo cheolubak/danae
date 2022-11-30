@@ -3,22 +3,22 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import databaseConfig from './config/database.config';
+import redisConfig from './config/redis.config';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+import { RedisModule } from './redis.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [databaseConfig] }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [databaseConfig, redisConfig],
+    }),
     DatabaseModule,
+    RedisModule,
     UserModule,
-    ClientsModule.register([
-      {
-        name: 'AUTH_SERVICE',
-        transport: Transport.REDIS,
-        options: { host: 'localhost', port: 6379 },
-      },
-    ]),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
