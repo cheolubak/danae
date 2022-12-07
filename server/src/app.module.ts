@@ -7,6 +7,12 @@ import databaseConfig from './config/database.config';
 import redisConfig from './config/redis.config';
 import { ConfigModule } from '@nestjs/config';
 import { RedisModule } from './redis.module';
+import { AuthModule } from './auth/auth.module';
+import { AddressModule } from './address/address.module';
+import { SellerModule } from './seller/seller.module';
+import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
+import { ShippingModule } from './shipping/shipping.module';
 
 @Module({
   imports: [
@@ -17,6 +23,12 @@ import { RedisModule } from './redis.module';
     DatabaseModule,
     RedisModule,
     UserModule,
+    AuthModule,
+    AddressModule,
+    SellerModule,
+    ProductModule,
+    OrderModule,
+    ShippingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
